@@ -26,8 +26,6 @@ from torch.utils.tensorboard import SummaryWriter
 
 def main(args):
     
-    base_path = r'/home/neuralnetworks_team084/Task1_pseudoLabeling/'
-
     if args.dataset == "cifar10":
         args.num_classes = 10
         labeled_dataset, unlabeled_dataset, test_dataset = get_cifar10(args, 
@@ -106,9 +104,6 @@ def main(args):
                                 args.num_classes, widen_factor=args.model_width, dropRate=args.model_droprate)
     model       = model.to(device)
 
-    ############################################################################
-    # TODO: SUPPLY your code
-    ############################################################################
     model_wt_path = Path('model_weights_%s_%s_%s' %(args.dataset, args.num_labeled, args.model_droprate))
     logfilename     = Path(model_wt_path) / Path("log_info.txt")
     model_last_path = Path(model_wt_path) / Path("last_trained.h5")
@@ -153,9 +148,6 @@ def main(args):
             
             x_l, y_l    = x_l.to(device), y_l.to(device)
             x_ul        = x_ul.to(device)
-            ####################################################################
-            # TODO: SUPPLY you code
-            ####################################################################
 
             optimizer.zero_grad()
             vatLoss = VATLoss(args)
